@@ -118,8 +118,10 @@ function App() {
 
         </div>
 
-        {/* SEO Content Section */}
-        <article className="mt-16 bg-white p-8 md:p-12 rounded-2xl shadow-sm border border-gray-100 max-w-4xl mx-auto text-gray-700 leading-relaxed">
+        {/* SEO Content Section with Sidebar Ads */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 mt-16 max-w-6xl mx-auto w-full">
+          
+          <article className="lg:col-span-8 bg-white p-8 md:p-10 rounded-2xl shadow-sm border border-gray-100 text-gray-700 leading-relaxed">
           
           <h2 className="text-2xl font-bold text-gray-900 mt-0 mb-4">What is Compound Interest?</h2>
           <p className="mb-4">
@@ -187,7 +189,17 @@ function App() {
           </div>
 
         </article>
-      </main>
+
+        {/* Sticky Sidebar for Ads */}
+        <aside className="lg:col-span-4 hidden lg:block">
+          <div className="sticky top-24 flex flex-col gap-6 w-full items-center">
+            <AdPlaceholder type="sidebar-rectangle" />
+            <AdPlaceholder type="sidebar-rectangle" />
+          </div>
+        </aside>
+
+      </div>
+    </main>
 
       {/* Sticky Footer Ad for Mobile */}
       <AdPlaceholder type="sticky-footer" />
