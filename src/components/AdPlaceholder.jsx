@@ -40,13 +40,45 @@ const AdPlaceholder = ({ type }) => {
     );
   }
 
+  if (type === 'sidebar-rectangle') {
+    const adsterraHTML = `
+      <html>
+        <head>
+          <style>body { margin: 0; padding: 0; display: flex; justify-content: center; align-items: center; background: transparent; }</style>
+        </head>
+        <body>
+          <script>
+            atOptions = {
+              'key' : 'b1250ac90f76b9306c86aa859b698062',
+              'format' : 'iframe',
+              'height' : 250,
+              'width' : 300,
+              'params' : {}
+            };
+          </script>
+          <script src="https://www.highrevenueformat.com/b1250ac90f76b9306c86aa859b698062/invoke.js"></script>
+        </body>
+      </html>
+    `;
+
+    return (
+      <div className="mx-auto my-6 flex justify-center w-full overflow-hidden max-w-[300px] h-[250px]">
+        <iframe 
+          title="Adsterra Sidebar Rectangle"
+          srcDoc={adsterraHTML} 
+          width="300" 
+          height="250" 
+          frameBorder="0" 
+          scrolling="no"
+          className="max-w-full"
+        ></iframe>
+      </div>
+    );
+  }
+
   // Fallbacks for the other placeholders until you provide their scripts
   let content = "Adsterra Placeholder";
   switch (type) {
-    case 'sidebar-rectangle':
-      classes += " max-w-[300px] h-[250px] mx-auto my-6";
-      content += " (300x250)";
-      break;
     case 'sticky-footer':
       classes += " h-[50px] fixed bottom-0 left-0 right-0 z-50 md:hidden bg-gray-200 border-t border-gray-300 rounded-none shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.1)]";
       content += " (Sticky Footer)";
