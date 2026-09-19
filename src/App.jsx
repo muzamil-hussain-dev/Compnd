@@ -3,6 +3,7 @@ import CalculatorForm from './components/CalculatorForm';
 import ResultsSummary from './components/ResultsSummary';
 import GrowthChart from './components/GrowthChart';
 import AdPlaceholder from './components/AdPlaceholder';
+import NativeBannerAd from './components/NativeBannerAd';
 
 function App() {
   const [values, setValues] = useState({
@@ -102,6 +103,7 @@ function App() {
           {/* Right Column - Results & Chart */}
           <div className="lg:col-span-8 flex flex-col gap-6">
             <ResultsSummary results={summary} />
+            <NativeBannerAd />
             <GrowthChart data={data} />
 
             {/* Sidebar Ad 2 (Shows under chart on desktop, or under form on mobile) */}
