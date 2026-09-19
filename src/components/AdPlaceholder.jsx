@@ -2,21 +2,52 @@ import React from 'react';
 
 const AdPlaceholder = ({ type }) => {
   let classes = "flex items-center justify-center bg-gray-200 text-gray-500 text-sm font-medium border border-gray-300 rounded-sm w-full";
-  let content = "Adsterra Placeholder";
 
+  if (type === 'top-banner') {
+    // We use an iframe with srcDoc to safely load Adsterra's document.write scripts in a React SPA
+    const adsterraHTML = `
+      <html>
+        <head>
+          <style>body { margin: 0; padding: 0; display: flex; justify-content: center; align-items: center; background: transparent; }</style>
+        </head>
+        <body>
+          <script>
+            atOptions = {
+              'key' : 'b25d64b28547eb8e1af2ed8882371c3b',
+              'format' : 'iframe',
+              'height' : 90,
+              'width' : 728,
+              'params' : {}
+            };
+          </script>
+          <script src="https://www.highrevenueformat.com/b25d64b28547eb8e1af2ed8882371c3b/invoke.js"></script>
+        </body>
+      </html>
+    `;
+
+    return (
+      <div className="mx-auto my-4 flex justify-center w-full overflow-hidden max-w-[728px] h-[90px]">
+        <iframe 
+          title="Adsterra Top Banner"
+          srcDoc={adsterraHTML} 
+          width="728" 
+          height="90" 
+          frameBorder="0" 
+          scrolling="no"
+          className="max-w-full"
+        ></iframe>
+      </div>
+    );
+  }
+
+  // Fallbacks for the other placeholders until you provide their scripts
+  let content = "Adsterra Placeholder";
   switch (type) {
-    case 'top-banner':
-      // 728x90 on desktop, 320x50 on mobile
-      classes += " max-w-[320px] h-[50px] md:max-w-[728px] md:h-[90px] mx-auto my-4";
-      content += " (728x90 / 320x50)";
-      break;
     case 'sidebar-rectangle':
-      // 300x250
       classes += " max-w-[300px] h-[250px] mx-auto my-6";
       content += " (300x250)";
       break;
     case 'sticky-footer':
-      // fixed at bottom for mobile
       classes += " h-[50px] fixed bottom-0 left-0 right-0 z-50 md:hidden bg-gray-200 border-t border-gray-300 rounded-none shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.1)]";
       content += " (Sticky Footer)";
       break;
